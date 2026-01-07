@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Inter, Playfair_Display } from "next/font/google";
+import Navigation from "./components/Navigation";
+import { Toaster } from "sonner";
+import Footer from "./components/Footer";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+export const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+export const playfair = Playfair_Display({
   subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+  variable: "--font-display",
 });
 
 export const metadata: Metadata = {
@@ -24,10 +23,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+      <body className={`${inter.variable} ${playfair.variable} antialiased`}>
+        <Toaster richColors />
+        <div className="min-h-screen bg-background">
+          <Navigation /> {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
