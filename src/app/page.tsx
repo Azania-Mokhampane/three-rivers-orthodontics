@@ -3,6 +3,7 @@ import About from "./components/About";
 import Booking from "./components/Booking";
 import Contact from "./components/Contact";
 import FAQ from "./components/FAQ";
+import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Gallery from "./components/Gallery";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
@@ -17,8 +18,7 @@ export default function Home() {
       <Booking />
       <FAQ />
       <Contact />
-
-      {/*   <FloatingWhatsApp /> */}
+      <FloatingWhatsApp />
     </div>
   );
 }
