@@ -1,4 +1,12 @@
-import { Award, GraduationCap, Heart, Users, Sparkles } from "lucide-react";
+import { Card, CardContent } from "@/components/ui/card";
+import {
+  Award,
+  GraduationCap,
+  Heart,
+  Users,
+  Sparkles,
+  User,
+} from "lucide-react";
 
 const About = () => {
   const credentials = [
@@ -27,6 +35,29 @@ const About = () => {
       title: "Official Spark Provider",
       description: "Certified provider of Spark clear aligners",
       link: "https://sparkaligners.com/",
+    },
+  ];
+
+  const teamMembers = [
+    {
+      name: "Thandi Mokoena",
+      role: "Practice Manager",
+      initials: "TM",
+    },
+    {
+      name: "Lerato Nkosi",
+      role: "Dental Assistant",
+      initials: "LN",
+    },
+    {
+      name: "Sipho Dlamini",
+      role: "Orthodontic Assistant",
+      initials: "SD",
+    },
+    {
+      name: "Palesa Molefe",
+      role: "Receptionist",
+      initials: "PM",
     },
   ];
 
@@ -133,6 +164,43 @@ const About = () => {
                 );
               })}
             </div>
+          </div>
+        </div>
+
+        {/* Team Section */}
+        <div className="mt-20">
+          <div className="text-center mb-12">
+            <p className="text-primary font-medium mb-2 tracking-wide uppercase text-sm">
+              Our Team
+            </p>
+            <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+              Meet the Team Behind Your Smile
+            </h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Our dedicated staff ensures every visit is comfortable, efficient,
+              and welcoming
+            </p>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            {teamMembers.map((member) => (
+              <Card
+                key={member.name}
+                className="bg-background border-border/50 hover:shadow-lg transition-shadow duration-300 text-center"
+              >
+                <CardContent className="p-6">
+                  <div className="w-20 h-20 rounded-full bg-accent mx-auto mb-4 flex items-center justify-center">
+                    <User className="w-8 h-8 text-primary" />
+                  </div>
+                  <h4 className="font-semibold text-foreground">
+                    {member.name}
+                  </h4>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {member.role}
+                  </p>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </div>
