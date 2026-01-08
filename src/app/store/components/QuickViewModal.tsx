@@ -35,11 +35,11 @@ const QuickViewModal = ({ product, open, onClose }: QuickViewModalProps) => {
 
   return (
     <Dialog open={open} onOpenChange={onClose}>
-      <DialogContent className="sm:max-w-2xl">
+      <DialogContent className="max-w-[95vw] sm:max-w-2xl max-h-[90vh] overflow-y-auto p-4 sm:p-6">
         <DialogHeader>
           <DialogTitle className="sr-only">{product.name}</DialogTitle>
         </DialogHeader>
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
           {/* Image Gallery */}
           <div className="relative aspect-square bg-muted/30 rounded-lg overflow-hidden">
             <Image
@@ -51,53 +51,67 @@ const QuickViewModal = ({ product, open, onClose }: QuickViewModalProps) => {
               <>
                 <button
                   onClick={prevImage}
-                  className="absolute left-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-background/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-background transition-colors"
+                  className="absolute left-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-background/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-background transition-colors"
                 >
-                  <ChevronLeft className="w-5 h-5" />
+                  <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
                 <button
                   onClick={nextImage}
-                  className="absolute right-2 top-1/2 -translate-y-1/2 w-10 h-10 bg-background/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-background transition-colors"
+                  className="absolute right-2 top-1/2 -translate-y-1/2 w-8 h-8 sm:w-10 sm:h-10 bg-background/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-background transition-colors"
                 >
-                  <ChevronRight className="w-5 h-5" />
+                  <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5" />
                 </button>
               </>
+            )}
+            {/* Thumbnail Gallery - Mobile: below image */}
+            {hasMultipleImages && (
+              <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex gap-1.5 md:hidden">
+                {product.images.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setCurrentImage(index)}
+                    className={`w-2 h-2 rounded-full transition-colors ${
+                      index === currentImage ? "bg-primary" : "bg-background/60"
+                    }`}
+                  />
+                ))}
+              </div>
             )}
           </div>
 
           {/* Product Info */}
-          <div className="flex flex-col justify-center">
-            <Badge variant="outline" className="w-fit mb-3">
+          <div className="flex flex-col">
+            <Badge variant="outline" className="w-fit mb-2 sm:mb-3">
               {product.category}
             </Badge>
-            <h2 className="font-display text-2xl font-bold text-foreground mb-3">
+            <h2 className="font-display text-xl sm:text-2xl font-bold text-foreground mb-2 sm:mb-3">
               {product.name}
             </h2>
             {product.description && (
-              <p className="text-muted-foreground mb-3">
+              <p className="text-sm sm:text-base text-muted-foreground mb-2 sm:mb-3">
                 {product.description}
               </p>
             )}
             {product.usage && (
-              <div className="bg-accent/50 rounded-lg p-3 mb-4">
+              <div className="bg-accent/50 rounded-lg p-2 sm:p-3 mb-3 sm:mb-4">
                 <p className="text-xs font-semibold text-foreground mb-1">
                   How to Use:
                 </p>
                 <p className="text-xs text-muted-foreground">{product.usage}</p>
               </div>
             )}
-            <p className="text-3xl font-bold text-primary mb-6">
+            <p className="text-2xl sm:text-3xl font-bold text-primary mb-4 sm:mb-6">
               R{product.price.toLocaleString()}
             </p>
 
-            {/* Thumbnail Gallery */}
+            {/* Thumbnail Gallery - Desktop only */}
             {hasMultipleImages && (
-              <div className="flex gap-2 mb-6">
+              <div className="hidden md:flex gap-2 mb-4 sm:mb-6">
                 {product.images.map((img, index) => (
                   <button
                     key={index}
                     onClick={() => setCurrentImage(index)}
-                    className={`w-14 h-14 rounded-md overflow-hidden border-2 transition-colors ${
+                    className={`w-12 h-12 sm:w-14 sm:h-14 rounded-md overflow-hidden border-2 transition-colors ${
                       index === currentImage
                         ? "border-primary"
                         : "border-transparent"
@@ -113,8 +127,8 @@ const QuickViewModal = ({ product, open, onClose }: QuickViewModalProps) => {
               </div>
             )}
 
-            <div className="flex items-center gap-2 text-sm text-muted-foreground bg-accent/50 px-4 py-2 rounded-lg">
-              <MapPin className="w-4 h-4 text-primary" />
+            <div className="flex items-center gap-2 text-xs sm:text-sm text-muted-foreground bg-accent/50 px-3 sm:px-4 py-2 rounded-lg mt-auto">
+              <MapPin className="w-4 h-4 text-primary shrink-0" />
               <span>Available in-store only</span>
             </div>
           </div>
