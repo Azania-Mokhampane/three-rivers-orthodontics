@@ -7,6 +7,7 @@ import FloatingWhatsApp from "./components/FloatingWhatsApp";
 import Gallery from "./components/Gallery";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
+import Testimonials from "./components/Testimonials";
 
 export default function Home() {
   return (
@@ -14,6 +15,7 @@ export default function Home() {
       <Hero />
       <Services />
       <Gallery />
+      <Testimonials />
       <About />
       <Booking />
       <FAQ />

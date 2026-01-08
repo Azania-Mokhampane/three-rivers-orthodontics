@@ -1,5 +1,5 @@
 "use client";
-import { MapPin, Phone, Mail, Clock } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react";
 import Image from "next/image";
 
 const Footer = () => {
@@ -11,6 +11,11 @@ const Footer = () => {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const socialLinks = [
+    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
+    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
+  ];
 
   return (
     <footer className="bg-foreground text-background py-16">
@@ -35,10 +40,25 @@ const Footer = () => {
                 <p className="text-xs text-background/70 -mt-1">Orthodontics</p>
               </div>
             </div>
-            <p className="text-background/70 text-sm leading-relaxed">
+            <p className="text-background/70 text-sm leading-relaxed mb-4">
               Creating beautiful, healthy smiles in Vereeniging. Expert
               orthodontic care by Dr Saad Dasoo.
             </p>
+            {/* Social Media Buttons */}
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="w-9 h-9 rounded-full bg-background/10 hover:bg-primary flex items-center justify-center transition-colors"
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Quick Links */}
@@ -91,19 +111,19 @@ const Footer = () => {
               <li className="flex items-center gap-3 text-sm text-background/70">
                 <Phone className="w-4 h-4 text-primary shrink-0" />
                 <a
-                  href="tel:+27164231227"
+                  href="tel:+27160000000"
                   className="hover:text-primary transition-colors"
                 >
-                  016 423 1227
+                  016 000 0000
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm text-background/70">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
                 <a
-                  href="mailto:admin@threeriversorthodontics.co.za"
+                  href="mailto:info@threeriversortho.co.za"
                   className="hover:text-primary transition-colors"
                 >
-                  admin@threeriversorthodontics.co.za
+                  info@threeriversortho.co.za
                 </a>
               </li>
               <li className="flex items-start gap-3 text-sm text-background/70">
