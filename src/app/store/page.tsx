@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import StorePageUI from "./components/StorePageUI";
+import Navigation from "../components/Navigation";
 
 export const metadata: Metadata = {
   title: "Orthodontic Products | Three Rivers Orthodontics",
@@ -17,5 +18,10 @@ export const metadata: Metadata = {
 };
 
 export default function StorePage() {
-  return <StorePageUI />;
+  return (
+    <div className="min-h-screen bg-background">
+      <Navigation />
+      <StorePageUI />
+    </div>
+  );
 }

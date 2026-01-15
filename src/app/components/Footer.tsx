@@ -1,12 +1,14 @@
 "use client";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { push } = useRouter();
+  const pathname = usePathname();
 
   const socialLinks = [
     {
@@ -22,19 +24,17 @@ const Footer = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    if (location.pathname !== "/") {
-      push("/");
-      setTimeout(() => {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    } else {
+    const scroll = () => {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+    };
+    if (pathname !== "/") {
+      push("/");
+      setTimeout(scroll, 100);
+    } else {
+      scroll();
     }
   };
 
@@ -132,19 +132,19 @@ const Footer = () => {
               <li className="flex items-center gap-3 text-sm text-background/70">
                 <Phone className="w-4 h-4 text-primary shrink-0" />
                 <a
-                  href="tel:+27160000000"
+                  href="tel:+27164231227"
                   className="hover:text-primary transition-colors"
                 >
-                  016 000 0000
+                  016 423 1227
                 </a>
               </li>
               <li className="flex items-center gap-3 text-sm text-background/70">
                 <Mail className="w-4 h-4 text-primary shrink-0" />
                 <a
-                  href="mailto:info@threeriversortho.co.za"
+                  href="mailto:info@threeriversorthodontics.co.za"
                   className="hover:text-primary transition-colors"
                 >
-                  info@threeriversortho.co.za
+                  info@threeriversorthodontics.co.za
                 </a>
               </li>
               <li className="flex items-start gap-3 text-sm text-background/70">
@@ -164,9 +164,21 @@ const Footer = () => {
           <p className="text-sm text-background/50">
             © {currentYear} Three Rivers Orthodontics. All rights reserved.
           </p>
-          <p className="text-sm text-background/50">
-            Dr Saad Dasoo - Specialist Orthodontist
-          </p>
+          <div className="flex items-center gap-4">
+            <Link
+              href="/terms-of-service"
+              className="text-sm text-background/50 hover:text-primary transition-colors"
+            >
+              Terms of Service
+            </Link>
+            <span className="text-background/30">|</span>
+            <Link
+              href="/privacy-policy"
+              className="text-sm text-background/50 hover:text-primary transition-colors"
+            >
+              Privacy Policy
+            </Link>
+          </div>
         </div>
       </div>
     </footer>
