@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Inter, Playfair_Display } from "next/font/google";
-import Navigation from "./components/Navigation";
 import { Toaster } from "sonner";
-import Footer from "./components/Footer";
 
 export const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const playfair = Playfair_Display({
@@ -56,10 +54,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
         <Toaster richColors />
-        <div className="min-h-screen bg-background">
-          <Navigation /> {children}
-          <Footer />
-        </div>
+        {children}
       </body>
     </html>
   );
