@@ -149,7 +149,7 @@ ${formData.message.trim()}`;
                   key={info.title}
                   className="border-0 shadow-soft bg-background"
                 >
-                  <CardContent className="p-6 text-wrap">
+                  <CardContent className="p-6">
                     <div className="w-12 h-12 rounded-xl bg-accent flex items-center justify-center mb-4">
                       <info.icon className="w-6 h-6 text-primary" />
                     </div>
