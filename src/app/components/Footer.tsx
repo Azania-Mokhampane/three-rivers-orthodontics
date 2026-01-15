@@ -1,4 +1,14 @@
 "use client";
+import {
+  HOME_ABOUT_SECTION,
+  HOME_BOOKING_SECTION,
+  HOME_FAQ_SECTION,
+  HOME_GALLERY_SECTION,
+  HOME_ROUTE,
+  HOME_SERVICES_SECTION,
+  PRIVACY_ROUTE,
+  TERMS_ROUTE,
+} from "@/lib/routes";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -30,8 +40,8 @@ const Footer = () => {
         element.scrollIntoView({ behavior: "smooth" });
       }
     };
-    if (pathname !== "/") {
-      push("/");
+    if (pathname !== HOME_ROUTE) {
+      push(HOME_ROUTE);
       setTimeout(scroll, 100);
     } else {
       scroll();
@@ -87,11 +97,11 @@ const Footer = () => {
             <h4 className="font-display font-semibold mb-4">Quick Links</h4>
             <ul className="space-y-2">
               {[
-                { href: "#services", label: "Services" },
-                { href: "#gallery", label: "Results" },
-                { href: "#about", label: "About" },
-                { href: "#booking", label: "Book Appointment" },
-                { href: "#faq", label: "FAQ" },
+                { href: HOME_SERVICES_SECTION, label: "Services" },
+                { href: HOME_GALLERY_SECTION, label: "Results" },
+                { href: HOME_ABOUT_SECTION, label: "About" },
+                { href: HOME_BOOKING_SECTION, label: "Book Appointment" },
+                { href: HOME_FAQ_SECTION, label: "FAQ" },
               ].map((link) => (
                 <li key={link.href}>
                   <button
@@ -166,14 +176,14 @@ const Footer = () => {
           </p>
           <div className="flex items-center gap-4">
             <Link
-              href="/terms-of-service"
+              href={TERMS_ROUTE}
               className="text-sm text-background/50 hover:text-primary transition-colors"
             >
               Terms of Service
             </Link>
             <span className="text-background/30">|</span>
             <Link
-              href="/privacy-policy"
+              href={PRIVACY_ROUTE}
               className="text-sm text-background/50 hover:text-primary transition-colors"
             >
               Privacy Policy

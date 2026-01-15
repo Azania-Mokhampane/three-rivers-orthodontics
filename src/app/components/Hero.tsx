@@ -3,17 +3,18 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import Image from "next/image";
 import CountUpStat from "./CountUpStat";
+import { HOME_BOOKING_SECTION, HOME_GALLERY_SECTION } from "@/lib/routes";
 
 const Hero = () => {
   const scrollToBooking = () => {
-    const element = document.querySelector("#booking");
+    const element = document.querySelector(HOME_BOOKING_SECTION);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
 
   const scrollToGallery = () => {
-    const element = document.querySelector("#gallery");
+    const element = document.querySelector(HOME_GALLERY_SECTION);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }

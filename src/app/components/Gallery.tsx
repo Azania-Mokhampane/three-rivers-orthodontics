@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronLeft, ChevronRight, ImageIcon } from "lucide-react";
+import { HOME_BOOKING_SECTION } from "@/lib/routes";
 
 const Gallery = () => {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -33,7 +34,7 @@ const Gallery = () => {
   ];
 
   const scrollToBooking = () => {
-    const element = document.querySelector("#booking");
+    const element = document.querySelector(HOME_BOOKING_SECTION);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }

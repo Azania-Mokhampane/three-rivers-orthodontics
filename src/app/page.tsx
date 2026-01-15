@@ -8,23 +8,26 @@ import Footer from "./components/Footer";
 import Gallery from "./components/Gallery";
 import Hero from "./components/Hero";
 import Navigation from "./components/Navigation";
+import PageTransition from "./components/PageTransitions";
 import Services from "./components/Services";
 import Testimonials from "./components/Testimonials";
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <Hero />
-      <Services />
-      <Gallery />
-      <Testimonials />
-      <About />
-      <Booking />
-      <FAQ />
-      <Contact />
-      <FloatingWhatsApp />
-      <Footer />
-    </div>
+    <PageTransition>
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <Hero />
+        <Services />
+        <Gallery />
+        <Testimonials />
+        <About />
+        <Booking />
+        <FAQ />
+        <Contact />
+        <FloatingWhatsApp />
+        <Footer />
+      </div>
+    </PageTransition>
   );
 }

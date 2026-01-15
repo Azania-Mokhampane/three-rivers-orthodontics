@@ -4,6 +4,17 @@ import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, ShoppingBag } from "lucide-react";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import {
+  HOME_ABOUT_SECTION,
+  HOME_BOOKING_SECTION,
+  HOME_CONTACT_SECTION,
+  HOME_FAQ_SECTION,
+  HOME_GALLERY_SECTION,
+  HOME_HOME_SECTION,
+  HOME_ROUTE,
+  HOME_SERVICES_SECTION,
+  STORE_ROUTE,
+} from "@/lib/routes";
 
 const Navigation = () => {
   const { push } = useRouter();
@@ -11,12 +22,12 @@ const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
-    { href: "#home", label: "Home" },
-    { href: "#services", label: "Services" },
-    { href: "#gallery", label: "Results" },
-    { href: "#about", label: "About" },
-    { href: "#faq", label: "FAQ" },
-    { href: "#contact", label: "Contact" },
+    { href: HOME_HOME_SECTION, label: "Home" },
+    { href: HOME_SERVICES_SECTION, label: "Services" },
+    { href: HOME_GALLERY_SECTION, label: "Results" },
+    { href: HOME_ABOUT_SECTION, label: "About" },
+    { href: HOME_FAQ_SECTION, label: "FAQ" },
+    { href: HOME_CONTACT_SECTION, label: "Contact" },
   ];
 
   const scrollToSection = (href: string) => {
@@ -27,8 +38,8 @@ const Navigation = () => {
       }
     };
 
-    if (pathname !== "/") {
-      push("/");
+    if (pathname !== HOME_ROUTE) {
+      push(HOME_ROUTE);
 
       // wait for route change + DOM paint
       setTimeout(scroll, 150);
@@ -76,7 +87,7 @@ const Navigation = () => {
               </button>
             ))}
             <button
-              onClick={() => push("/store")}
+              onClick={() => push(STORE_ROUTE)}
               className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
             >
               <ShoppingBag className="w-4 h-4" />
@@ -93,7 +104,10 @@ const Navigation = () => {
               <Phone className="w-4 h-4" />
               <span className="hidden lg:inline">Call Us</span>
             </a>
-            <Button onClick={() => scrollToSection("#booking")} size="lg">
+            <Button
+              onClick={() => scrollToSection(HOME_BOOKING_SECTION)}
+              size="lg"
+            >
               Book Appointment
             </Button>
           </div>
@@ -123,7 +137,7 @@ const Navigation = () => {
               ))}
               <button
                 onClick={() => {
-                  push("/store");
+                  push(STORE_ROUTE);
                   setIsOpen(false);
                 }}
                 className="flex items-center gap-2 text-left px-4 py-3 text-foreground hover:bg-accent rounded-lg transition-colors cursor-pointer"
@@ -133,7 +147,7 @@ const Navigation = () => {
               </button>
               <div className="pt-4 px-4">
                 <Button
-                  onClick={() => scrollToSection("#booking")}
+                  onClick={() => scrollToSection(HOME_BOOKING_SECTION)}
                   className="w-full"
                   size="lg"
                 >

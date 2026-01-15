@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Inter, Playfair_Display } from "next/font/google";
 import { Toaster } from "sonner";
+import { CookieConsent } from "./components/CookieConsent";
 
 export const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 export const playfair = Playfair_Display({
@@ -54,6 +55,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${inter.variable} ${playfair.variable} antialiased`}>
         <Toaster richColors />
+        <CookieConsent />
         {children}
       </body>
     </html>
