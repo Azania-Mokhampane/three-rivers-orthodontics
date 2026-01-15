@@ -3,10 +3,11 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, ShoppingBag } from "lucide-react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const Navigation = () => {
   const { push } = useRouter();
+  const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -19,20 +20,22 @@ const Navigation = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    if (location.pathname !== "/") {
-      push("/");
-      setTimeout(() => {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    } else {
+    const scroll = () => {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+    };
+
+    if (pathname !== "/") {
+      push("/");
+
+      // wait for route change + DOM paint
+      setTimeout(scroll, 150);
+    } else {
+      scroll();
     }
+
     setIsOpen(false);
   };
 

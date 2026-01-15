@@ -2,12 +2,13 @@
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { push } = useRouter();
+  const pathname = usePathname();
 
   const socialLinks = [
     {
@@ -23,19 +24,17 @@ const Footer = () => {
   ];
 
   const scrollToSection = (href: string) => {
-    if (location.pathname !== "/") {
-      push("/");
-      setTimeout(() => {
-        const element = document.querySelector(href);
-        if (element) {
-          element.scrollIntoView({ behavior: "smooth" });
-        }
-      }, 100);
-    } else {
+    const scroll = () => {
       const element = document.querySelector(href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+    };
+    if (pathname !== "/") {
+      push("/");
+      setTimeout(scroll, 100);
+    } else {
+      scroll();
     }
   };
 
