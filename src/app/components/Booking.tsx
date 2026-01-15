@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
-  Calendar,
+  Calendar as CalendarIcon,
   Clock,
   CheckCircle,
   ChevronLeft,
@@ -15,6 +15,8 @@ import {
   ExternalLink,
 } from "lucide-react";
 import { toast } from "sonner";
+import { addMonths, isBefore, isWeekend, startOfDay } from "date-fns";
+import { Calendar } from "@/components/ui/calendar";
 
 // WhatsApp number for Three Rivers Orthodontics
 const WHATSAPP_NUMBER = "27615830624";
@@ -32,26 +34,14 @@ const Booking = () => {
     message: "",
   });
 
-  // Generate available dates (next 30 days, excluding weekends)
-  const getAvailableDates = () => {
-    const dates: Date[] = [];
-    const today = new Date();
+  // Calendar date constraints - 3 months from today, excluding weekends
+  const today = startOfDay(new Date());
+  const threeMonthsFromNow = addMonths(today, 3);
 
-    for (let i = 1; i <= 30; i++) {
-      const date = new Date(today);
-      date.setDate(today.getDate() + i);
-      const dayOfWeek = date.getDay();
-
-      // Exclude Saturday (6) and Sunday (0)
-      if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-        dates.push(date);
-      }
-    }
-
-    return dates;
+  // Disable weekends and past dates
+  const isDateDisabled = (date: Date) => {
+    return isWeekend(date) || isBefore(date, today);
   };
-
-  const availableDates = getAvailableDates();
 
   // Time slots (8 AM - 4:30 PM)
   const timeSlots = [
@@ -214,7 +204,7 @@ ${formData.message.trim()}`
                 size="lg"
                 className="gap-2 shrink-0"
               >
-                <Calendar className="w-5 h-5" />
+                <CalendarIcon className="w-5 h-5" />
                 Book Online
                 <ExternalLink className="w-4 h-4" />
               </Button>
@@ -262,32 +252,34 @@ ${formData.message.trim()}`
             {step === 1 && (
               <div className="animate-fade-in">
                 <div className="flex items-center gap-2 mb-6">
-                  <Calendar className="w-5 h-5 text-primary" />
+                  <CalendarIcon className="w-5 h-5 text-primary" />
                   <h3 className="font-display text-xl font-semibold">
                     Select a Date
                   </h3>
                 </div>
+                <p className="text-sm text-muted-foreground mb-4">
+                  Choose from available weekdays over the next 3 months
+                </p>
 
-                <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 gap-3 mb-6">
-                  {availableDates.slice(0, 10).map((date) => (
-                    <button
-                      key={date.toISOString()}
-                      onClick={() => setSelectedDate(date)}
-                      className={`p-3 rounded-lg text-center transition-all duration-200 ${
-                        selectedDate?.toDateString() === date.toDateString()
-                          ? "bg-primary text-primary-foreground shadow-soft"
-                          : "bg-muted hover:bg-accent text-foreground"
-                      }`}
-                    >
-                      <p className="text-xs opacity-70">
-                        {date.toLocaleDateString("en-ZA", { weekday: "short" })}
-                      </p>
-                      <p className="font-semibold">{date.getDate()}</p>
-                      <p className="text-xs opacity-70">
-                        {date.toLocaleDateString("en-ZA", { month: "short" })}
-                      </p>
-                    </button>
-                  ))}
+                <div className="flex justify-center mb-6">
+                  <Calendar
+                    mode="single"
+                    selected={selectedDate || undefined}
+                    onSelect={(date) => setSelectedDate(date || null)}
+                    disabled={isDateDisabled}
+                    startMonth={today}
+                    endMonth={threeMonthsFromNow}
+                    numberOfMonths={1}
+                    className="rounded-lg border border-border bg-card p-3 pointer-events-auto"
+                    classNames={{
+                      button_next:
+                        "cursor-pointer h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 inline-flex items-center justify-center rounded-md hover:bg-accent",
+                      button_previous:
+                        "cursor-pointer h-7 w-7 bg-transparent p-0 opacity-50 hover:opacity-100 inline-flex items-center justify-center rounded-md hover:bg-accent",
+
+                      day: "h-9 w-9 p-0 font-normal inline-flex items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground transition-colors",
+                    }}
+                  />
                 </div>
 
                 <div className="flex justify-end">
