@@ -64,15 +64,15 @@ export default function NotFoundPage() {
 
         <p className="mt-12 text-sm text-muted-foreground">
           Looking for something specific? Visit our{" "}
-          <a
-            onClick={() => scrollToSection("/store")}
+          <Link
+            href="/store"
             className="text-primary hover:underline cursor-pointer"
           >
             Store
-          </a>{" "}
+          </Link>{" "}
           or{" "}
           <a
-            onClick={() => scrollToSection("/#services")}
+            onClick={() => scrollToSection("#services")}
             className="text-primary hover:underline cursor-pointer"
           >
             Services
