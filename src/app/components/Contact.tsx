@@ -172,7 +172,7 @@ ${formData.message.trim()}`;
                         {info.content}
                       </a>
                     ) : (
-                      <p className="text-muted-foreground whitespace-pre-line text-sm">
+                      <p className="text-muted-foreground whitespace-pre-line text-sm truncate">
                         {info.content}
                       </p>
                     )}
@@ -184,7 +184,7 @@ ${formData.message.trim()}`;
             {/* Map Placeholder */}
             <div className="aspect-video rounded-xl overflow-hidden bg-accent shadow-soft">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3576.1234567890123!2d27.9234567890123!3d-26.6543210987654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjbCsDM5JzE1LjYiUyAyN8KwNTUnMjQuNCJF!5e0!3m2!1sen!2sza!4v1234567890123!5m2!1sen!2sza"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.645704663113!2d27.9706330754307!3d-26.659823976798886!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1e94f777ca01be41%3A0x428e5378899aa354!2s139%20General%20Hertzog%20Rd%2C%20Three%20Rivers%2C%20Vereeniging%2C%201929!5e0!3m2!1sen!2sza!4v1768502693615!5m2!1sen!2sza"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -197,7 +197,7 @@ ${formData.message.trim()}`;
           </div>
 
           {/* Contact Form */}
-          <Card className="border-0 shadow-elevated bg-background">
+          <Card className="border-0 shadow-elevated bg-background h-fit">
             <CardContent className="p-6 md:p-8">
               <h3 className="font-display text-2xl font-semibold text-foreground mb-6">
                 Send Us a Message

@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Star } from "lucide-react";
 import Image from "next/image";
+import CountUpStat from "./CountUpStat";
 
 const Hero = () => {
   const scrollToBooking = () => {
@@ -70,28 +71,24 @@ const Hero = () => {
 
             {/* Trust Indicators */}
             <div className="flex flex-wrap gap-6 pt-6 border-t border-border">
-              <div>
-                <p className="text-3xl font-display font-bold text-foreground">
-                  15+
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Years Experience
-                </p>
-              </div>
-              <div>
-                <p className="text-3xl font-display font-bold text-foreground">
-                  2,000+
-                </p>
-                <p className="text-sm text-muted-foreground">Happy Smiles</p>
-              </div>
-              <div>
-                <p className="text-3xl font-display font-bold text-foreground">
-                  98%
-                </p>
-                <p className="text-sm text-muted-foreground">
-                  Patient Satisfaction
-                </p>
-              </div>
+              <CountUpStat
+                end={15}
+                suffix="+"
+                label="Years Experience"
+                delay={0}
+              />
+              <CountUpStat
+                end={2000}
+                suffix="+"
+                label="Happy Smiles"
+                delay={200}
+              />
+              <CountUpStat
+                end={98}
+                suffix="%"
+                label="Patient Satisfaction"
+                delay={400}
+              />
             </div>
           </div>
 

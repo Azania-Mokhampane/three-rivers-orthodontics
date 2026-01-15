@@ -1,14 +1,40 @@
 "use client";
 import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FiFacebook, FiInstagram } from "react-icons/fi";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { push } = useRouter();
+
+  const socialLinks = [
+    {
+      icon: FiFacebook,
+      href: "https://www.facebook.com/OrthodonticsThreeRivers",
+      label: "Facebook",
+    },
+    {
+      icon: FiInstagram,
+      href: "https://www.instagram.com/threeriversorthodontics",
+      label: "Instagram",
+    },
+  ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/") {
+      push("/");
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
