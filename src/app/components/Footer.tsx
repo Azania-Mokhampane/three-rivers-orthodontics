@@ -1,5 +1,5 @@
 "use client";
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram } from "lucide-react";
+import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { FiFacebook, FiInstagram } from "react-icons/fi";
@@ -37,11 +37,6 @@ const Footer = () => {
       }
     }
   };
-
-  const socialLinks = [
-    { icon: Facebook, href: "https://facebook.com", label: "Facebook" },
-    { icon: Instagram, href: "https://instagram.com", label: "Instagram" },
-  ];
 
   return (
     <footer className="bg-foreground text-background py-16">

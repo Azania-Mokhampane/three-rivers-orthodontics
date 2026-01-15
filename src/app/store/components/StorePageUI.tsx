@@ -1,12 +1,12 @@
 "use client";
 import { Product, products } from "@/lib/mockdata";
 import { useMemo, useState } from "react";
-import ProductCard from "./components/ProductCard";
-import QuickViewModal from "./components/QuickViewModal";
-import FloatingWhatsApp from "../components/FloatingWhatsApp";
 import { MapPin, Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import ProductCard from "./ProductCard";
+import FloatingWhatsApp from "@/app/components/FloatingWhatsApp";
+import QuickViewModal from "./QuickViewModal";
 
 const categories = [
   "All",
