@@ -1,14 +1,40 @@
 "use client";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
+import { FiFacebook, FiInstagram } from "react-icons/fi";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
+  const { push } = useRouter();
+
+  const socialLinks = [
+    {
+      icon: FiFacebook,
+      href: "https://www.facebook.com/OrthodonticsThreeRivers",
+      label: "Facebook",
+    },
+    {
+      icon: FiInstagram,
+      href: "https://www.instagram.com/threeriversorthodontics",
+      label: "Instagram",
+    },
+  ];
 
   const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
+    if (location.pathname !== "/") {
+      push("/");
+      setTimeout(() => {
+        const element = document.querySelector(href);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
     }
   };
 
@@ -39,6 +65,21 @@ const Footer = () => {
               Creating beautiful, healthy smiles in Vereeniging. Expert
               orthodontic care by Dr Saad Dasoo.
             </p>
+            {/* Social Media Buttons */}
+            <div className="flex gap-3">
+              {socialLinks.map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
+                  className="w-9 h-9 rounded-full bg-background/10 hover:bg-primary flex items-center justify-center transition-colors"
+                >
+                  <social.icon className="w-4 h-4" />
+                </a>
+              ))}
+            </div>
           </div>
 
           {/* Quick Links */}

@@ -113,6 +113,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Fonts */
+  --font-display: var(--font-display), serif;
 }
 
 /* -----------------------------------------
@@ -192,6 +195,18 @@
     animation: scale-in 0.4s ease-out forwards;
   }
 
+  .animate-stat-glow {
+    animation: stat-glow 0.8s ease-out forwards;
+  }
+
+  .animate-accordion-up {
+    animation: accordion-up 0.2s ease-out;
+  }
+
+  .animate-accordion-down {
+    animation: accordion-down 0.2s ease-out;
+  }
+
   .bg-teal-dark {
     background-color: hsl(var(--teal-dark));
   }
@@ -235,6 +250,40 @@
     to {
       opacity: 1;
       transform: scale(1);
+    }
+  }
+
+  @keyframes stat-glow {
+    0% {
+      text-shadow: 0 0 0 hsl(var(--primary) / 0);
+      transform: scale(1);
+    }
+    50% {
+      text-shadow: 0 0 20px hsl(var(--primary) / 0.6),
+        0 0 40px hsl(var(--primary) / 0.3);
+      transform: scale(1.05);
+    }
+    100% {
+      text-shadow: 0 0 0 hsl(var(--primary) / 0);
+      transform: scale(1);
+    }
+  }
+
+  @keyframes accordion-up {
+    from {
+      height: 0;
+    }
+    to {
+      height: var(--radix-accordion-content-height);
+    }
+  }
+
+  @keyframes accordion-down {
+    from {
+      height: var(--radix-accordion-content-height);
+    }
+    to {
+      height: 0;
     }
   }
 }

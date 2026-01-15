@@ -3,8 +3,10 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Phone, ShoppingBag } from "lucide-react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 const Navigation = () => {
+  const { push } = useRouter();
   const [isOpen, setIsOpen] = useState(false);
 
   const navLinks = [
@@ -18,7 +20,7 @@ const Navigation = () => {
 
   const scrollToSection = (href: string) => {
     if (location.pathname !== "/") {
-      //   navigate("/");
+      push("/");
       setTimeout(() => {
         const element = document.querySelector(href);
         if (element) {
@@ -71,8 +73,8 @@ const Navigation = () => {
               </button>
             ))}
             <button
-              //   onClick={() => navigate("/store")}
-              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300"
+              onClick={() => push("/store")}
+              className="flex items-center gap-1.5 text-sm font-medium text-muted-foreground hover:text-primary transition-colors duration-300 cursor-pointer"
             >
               <ShoppingBag className="w-4 h-4" />
               Store
@@ -118,10 +120,10 @@ const Navigation = () => {
               ))}
               <button
                 onClick={() => {
-                  //   navigate("/store");
+                  push("/store");
                   setIsOpen(false);
                 }}
-                className="flex items-center gap-2 text-left px-4 py-3 text-foreground hover:bg-accent rounded-lg transition-colors"
+                className="flex items-center gap-2 text-left px-4 py-3 text-foreground hover:bg-accent rounded-lg transition-colors cursor-pointer"
               >
                 <ShoppingBag className="w-4 h-4" />
                 Store
