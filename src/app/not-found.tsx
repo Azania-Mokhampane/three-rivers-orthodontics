@@ -1,9 +1,28 @@
+"use client";
 /* eslint-disable react/no-unescaped-entities */
 import { Home, ArrowLeft, Search } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { usePathname, useRouter } from "next/navigation";
 
 export default function NotFoundPage() {
+  const pathname = usePathname();
+  const { push } = useRouter();
+
+  const scrollToSection = (href: string) => {
+    const scroll = () => {
+      const element = document.querySelector(href);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    };
+    if (pathname !== "/") {
+      push("/");
+      setTimeout(scroll, 100);
+    } else {
+      scroll();
+    }
+  };
   return (
     <div className="min-h-screen bg-linear-to-b from-background to-muted/30 flex items-center justify-center px-4">
       <div className="text-center max-w-lg">
@@ -45,13 +64,19 @@ export default function NotFoundPage() {
 
         <p className="mt-12 text-sm text-muted-foreground">
           Looking for something specific? Visit our{" "}
-          <Link href="/store" className="text-primary hover:underline">
+          <a
+            onClick={() => scrollToSection("/store")}
+            className="text-primary hover:underline cursor-pointer"
+          >
             Store
-          </Link>{" "}
+          </a>{" "}
           or{" "}
-          <Link href="/#services" className="text-primary hover:underline">
+          <a
+            onClick={() => scrollToSection("/#services")}
+            className="text-primary hover:underline cursor-pointer"
+          >
             Services
-          </Link>
+          </a>
         </p>
       </div>
     </div>
