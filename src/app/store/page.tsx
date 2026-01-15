@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import StorePageUI from "./components/StorePageUI";
 import Navigation from "../components/Navigation";
+import PageTransition from "../components/PageTransitions";
 
 export const metadata: Metadata = {
   title: "Orthodontic Products | Three Rivers Orthodontics",
@@ -19,9 +20,11 @@ export const metadata: Metadata = {
 
 export default function StorePage() {
   return (
-    <div className="min-h-screen bg-background">
-      <Navigation />
-      <StorePageUI />
-    </div>
+    <PageTransition>
+      <div className="min-h-screen bg-background">
+        <Navigation />
+        <StorePageUI />
+      </div>
+    </PageTransition>
   );
 }

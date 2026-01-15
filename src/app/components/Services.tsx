@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Smile, Clock, Shield, Sparkles, ArrowRight } from "lucide-react";
+import { HOME_BOOKING_SECTION } from "@/lib/routes";
 
 const Services = () => {
   const services = [
@@ -39,7 +40,7 @@ const Services = () => {
   ];
 
   const scrollToBooking = () => {
-    const element = document.querySelector("#booking");
+    const element = document.querySelector(HOME_BOOKING_SECTION);
     if (element) {
       element.scrollIntoView({ behavior: "smooth" });
     }
